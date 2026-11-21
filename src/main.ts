@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './styles.css';
 import { scenes } from './scenes';
+import { mountFooter } from './changelog';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,8 @@ const sections = scenes.map((scene) => {
   scene.setup?.(stage);
   return { scene, section, stage };
 });
+
+mountFooter();
 
 const mm = gsap.matchMedia();
 

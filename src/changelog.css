@@ -1,0 +1,108 @@
+/* Footer version link and changelog modal. Entries use a sunken (inset) panel. */
+:root {
+  --sunken: #efece5;
+  --sunken-edge: #d6d1c6;
+  --sunken-shade: rgb(0 0 0 / 0.16);
+  --sunken-light: rgb(255 255 255 / 0.85);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --sunken: #18181c;
+    --sunken-edge: #2b2b31;
+    --sunken-shade: rgb(0 0 0 / 0.55);
+    --sunken-light: rgb(255 255 255 / 0.06);
+  }
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 20px 16px 28px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.version-link {
+  font: inherit;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  background: var(--sunken);
+  border: 1px solid var(--sunken-edge);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 2px var(--sunken-shade), inset -1px -1px 1px var(--sunken-light);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.version-link:hover { color: var(--ink); }
+.version-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.changelog {
+  width: min(640px, calc(100vw - 32px));
+  max-height: min(80vh, 760px);
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 24px 64px rgb(0 0 0 / 0.25);
+  overflow: hidden;
+}
+.changelog[open] { display: flex; flex-direction: column; }
+.changelog::backdrop { background: rgb(20 20 23 / 0.45); backdrop-filter: blur(2px); }
+
+.changelog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 12px;
+}
+.changelog-head h2 { font-size: 24px; margin: 0; }
+.changelog-close {
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.changelog-close:hover { background: var(--field); color: var(--ink); }
+.changelog-close:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.changelog-body {
+  overflow-y: auto;
+  padding: 4px 24px 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.version-entry {
+  padding: 16px 20px;
+  background: var(--sunken);
+  border: 1px solid var(--sunken-edge);
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 5px var(--sunken-shade), inset -1px -1px 3px var(--sunken-light);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.version-entry h3 { margin: 0; font-size: 17px; font-weight: 600; }
+.version-entry h3.current { color: var(--accent); }
+.release-date { margin: 2px 0 10px; font-size: 13px; font-style: italic; color: var(--ink-soft); }
+.version-entry ul { margin: 0; padding-left: 20px; }
+.version-entry li { margin-bottom: 4px; }
+.version-entry li:last-child { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+  .changelog-head { padding: 16px 16px 8px; }
+  .changelog-body { padding: 4px 16px 16px; }
+  .version-entry { padding: 14px 16px; }
+}
