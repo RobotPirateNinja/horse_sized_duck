@@ -10,6 +10,14 @@ export interface Release {
 
 export const changelog: Release[] = [
   {
+    version: '0.2.0',
+    date: '2026-11-21',
+    changes: [
+      '“Formally verified” button in the last panel: the model’s key results proved in Lean, explained with tooltips',
+      'Lean proof file in lean/, checked on every change',
+    ],
+  },
+  {
     version: '0.1.1',
     date: '2026-11-21',
     changes: ['Version number in the footer', 'This changelog'],
