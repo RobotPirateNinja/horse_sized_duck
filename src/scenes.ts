@@ -33,9 +33,17 @@ function verdictText(m: Matchup, label: string) {
 
 // ---------- 1. The question ----------
 
+// Each herd horse is drawn HERD_HORSE_W px wide. Treat them as duck-sized (by weight), which fixes
+// the scene's px-per-metre. The duck starts mallard-sized at that scale and grows by 1/k until it is
+// a horse-sized duck next to the herd.
+const HERD_HORSE_W = 30;
+const introK = matchup('weight').k;
+const herdPpm = (HERD_HORSE_W * horseArt.height) / horseArt.width / (horseArt.meters * introK);
+const bigDuckPpm = herdPpm / introK;
+
 const herd = () => {
   let out = '';
-  const w = 30;
+  const w = HERD_HORSE_W;
   for (let i = 0; i < 100; i++) {
     const col = i % 20;
     const row = Math.floor(i / 20);
@@ -59,7 +67,7 @@ const intro: Scene = {
     </div>
     <div class="canvas"><svg viewBox="0 0 1000 440" aria-hidden="true">
       <line class="ground" x1="0" y1="410" x2="1000" y2="410"/>
-      ${place(duckArt, 'big-duck', 260, 410, 360 / 2.2)}
+      ${place(duckArt, 'big-duck', 260, 410, bigDuckPpm)}
       <g class="herd">${herd()}</g>
     </svg></div>
     <p class="lede">Scroll to begin the study.</p>`,
@@ -70,6 +78,16 @@ const intro: Scene = {
   },
   animate(el, tl) {
     tl.from(el.querySelectorAll('.herd-horse'), { x: 600, opacity: 0, stagger: 0.004, duration: 0.4, ease: 'power2.out' });
+    // Grow the duck from mallard-sized to horse-sized while the herd spreads out, finishing as the
+    // pin releases. Interpolate on a log scale so the growth feels even.
+    const scaler = $(el, '.big-duck .scaler');
+    const proxy = { p: 0 };
+    const grow = () => gsap.set(scaler, { scale: introK ** (1 - proxy.p), transformOrigin: '50% 100%' });
+    grow();
+    tl.to(proxy, { p: 1, duration: 1, ease: 'power1.inOut', onUpdate: grow }, 0);
+  },
+  still(el) {
+    gsap.set($(el, '.big-duck .scaler'), { scale: 1 });
   },
 };
 
