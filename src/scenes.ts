@@ -3,6 +3,7 @@ import { duckArt, horseArt, personArt, place } from './art';
 import { formatLb, horse, mallard, matchup, meanings, mToFt, pluckedMallard, type Matchup, type Meaning } from './data';
 import { getAnswers, onAnswers, setAnswer, type Pick } from './state';
 import { battleHtml, mountBattle } from './battle/view';
+import { mountProof, proofButtonHtml } from './proof/modal';
 import { heightDecor, skinDecor, volumeDecor, weightDecor, type Decor, type StageCtx } from './decor';
 
 export interface Scene {
@@ -263,7 +264,7 @@ const finalVerdict: Scene = {
       <p class="lede" data-final-body></p>
     </div>
     ${battleHtml()}
-    <div></div>`,
+    <div class="proof-row">${proofButtonHtml()}</div>`,
   setup(el) {
     const name = (p: Pick) => (p === 'horses' ? '100 duck-sized horses' : 'one horse-sized duck');
     onAnswers((a) => {
@@ -281,6 +282,7 @@ const finalVerdict: Scene = {
           : `You first chose ${name(a.firstPick)}. Measured by ${label}, you should have picked ${name(best)}. Test it below.`;
     });
     mountBattle($(el, '.battle'));
+    mountProof(el);
   },
 };
 
