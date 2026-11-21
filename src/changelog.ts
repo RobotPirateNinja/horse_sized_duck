@@ -12,7 +12,11 @@ export const changelog: Release[] = [
   {
     version: '0.1.1',
     date: '2026-11-21',
-    changes: ['Version number in the footer', 'This changelog'],
+    changes: [
+      'The duck on the first panel now grows from mallard-sized to horse-sized as you scroll and the herd arrives',
+      'Version number in the footer',
+      'This changelog',
+    ],
   },
   {
     version: '0.1.0',
