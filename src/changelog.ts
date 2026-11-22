@@ -10,6 +10,14 @@ export interface Release {
 
 export const changelog: Release[] = [
   {
+    version: '0.2.1',
+    date: '2026-11-22',
+    changes: [
+      '“Made with Claude by RobotPirateNinja” credit in the footer',
+      'Links to other sites now open in a new tab',
+    ],
+  },
+  {
     version: '0.2.0',
     date: '2026-11-21',
     changes: [
@@ -83,8 +91,11 @@ export function mountFooter(): void {
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML = `
-    <span>A scientific study of a silly question.</span>
-    <button type="button" class="version-link" aria-haspopup="dialog">v${currentVersion}</button>`;
+    <p class="footer-credit">Made with <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude</a> by <a href="https://robotpirateninja.com" target="_blank" rel="noopener noreferrer">RobotPirateNinja</a></p>
+    <div class="footer-meta">
+      <span>A scientific study of a silly question.</span>
+      <button type="button" class="version-link" aria-haspopup="dialog">v${currentVersion}</button>
+    </div>`;
   document.body.appendChild(footer);
 
   const dialog = document.createElement('dialog');
