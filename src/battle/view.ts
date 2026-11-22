@@ -67,7 +67,7 @@ export function battleHtml() {
       <div class="battle-result" data-result hidden></div>
     </div>
     <p class="battle-note">Combat model from the Ultimate Battle Simulator: stats for power, stamina and agility set each fighter's health, speed and hit strength, rescaled for size.</p>
-    <p class="battle-note">Sources: mallard weight from <a href="https://www.bto.org/understanding-birds/birdfacts/mallard">BTO</a>, mallard length and horse weight from Wikipedia (<a href="https://en.wikipedia.org/wiki/Mallard">mallard</a>, <a href="https://en.wikipedia.org/wiki/Horse_body_mass">horse</a>), Dromornis from the <a href="https://australian.museum/learn/australia-over-time/extinct-animals/dromornis-stirtoni/">Australian Museum</a>. Heights, densities and skin areas are approximations.</p>
+    <p class="battle-note">Sources: mallard weight from <a href="https://www.bto.org/understanding-birds/birdfacts/mallard" target="_blank" rel="noopener noreferrer">BTO</a>, mallard length and horse weight from Wikipedia (<a href="https://en.wikipedia.org/wiki/Mallard" target="_blank" rel="noopener noreferrer">mallard</a>, <a href="https://en.wikipedia.org/wiki/Horse_body_mass" target="_blank" rel="noopener noreferrer">horse</a>), Dromornis from the <a href="https://australian.museum/learn/australia-over-time/extinct-animals/dromornis-stirtoni/" target="_blank" rel="noopener noreferrer">Australian Museum</a>. Heights, densities and skin areas are approximations.</p>
   </div>`;
 }
 

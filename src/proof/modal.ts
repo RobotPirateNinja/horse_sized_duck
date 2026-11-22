@@ -173,7 +173,7 @@ function modalHtml(): string {
       <p class="proof-hint">Hover or tap anything <span class="term">underlined</span> or coloured in the code for an explanation.</p>
       ${cards.map(cardHtml).join('')}
       <footer class="proof-foot">
-        <p>Every proof is re-checked by Lean's ${T.kernel}. The code on this page is read straight from <a href="${FILE_URL}" target="_blank" rel="noopener">lean/HorseSizedDuck.lean</a>, the same file Lean checks. To check it yourself, install Lean and run <code>lake build</code> in the <code>lean</code> folder.</p>
+        <p>Every proof is re-checked by Lean's ${T.kernel}. The code on this page is read straight from <a href="${FILE_URL}" target="_blank" rel="noopener noreferrer">lean/HorseSizedDuck.lean</a>, the same file Lean checks. To check it yourself, install Lean and run <code>lake build</code> in the <code>lean</code> folder.</p>
       </footer>
     </div>
     <div class="proof-tip" role="tooltip" id="proof-tip" hidden></div>
